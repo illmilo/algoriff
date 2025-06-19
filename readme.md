@@ -4,7 +4,7 @@
 
 ## Demo
 
-https://holytriangle.vercel.app
+[holytriangle.vercel.app](holytriangle.vercel.app)
 
 ## Description
 
