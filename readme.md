@@ -17,7 +17,6 @@ This is a template repository that helps you to set up your Django+Vecel+Neon pr
 4. ```bash
    git clone https://github.com/illmilo/ holytriangle
    cd holytriangle
-   python3 manage.py migrate
    nano .env
    ```
 5. Copy-paste Neon environmental variables from your Verel project into `.env` file
@@ -27,6 +26,9 @@ This is a template repository that helps you to set up your Django+Vecel+Neon pr
     - Login: `admin`
     - Password: `securepassword123`
 
+8. ```bash
+   python3 manage.py migrate
+   ```
 Make sure `.env` is added to `.gitignore` and will not leak into production.
 
 ## License
