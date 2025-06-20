@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Компьтерные науки для детей | illtutor</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="favicon" href="{% static 'logo/favicon.ico' %}">
+    <link rel="icon" href="{% static 'logo/favicon.ico' %}">
+    
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="{% static 'logo/favicon.ico' %}" alt="Logo" width="35px">
+                <span>illtutor</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Курсы</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-outline">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Компьютерные науки для школьников</h1>
+                <p>Раскройте потенциал вашего ребенка под руководством опытных преподавателей.
+                    Индивидуально разработанные учебные курсы, которые помогут школьникам
+                    добиться успеха в востребованной профессии.</p>
+                <div class="hero-btns">
+                    <a href="#start" class="btn">Начать</a>
+                    <a href="#courses" class="btn btn-outline">Посмотреть курсы</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pros Section -->
+    <section class="pros" id="start">
+        <div class="container">
+            <div class="section-title">
+                <h2>Зачем выбирать illtutor?</h2>
+                <p>Почувствуйте разницу в подходе к обучению</p>
+            </div>
+            <div class="pros-container">
+                <div class="pro-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Молодые преподаватели</h3>
+                    <p>Наши преподаватели – невыгоревшие специалисты с опытом от 6 месяцев. 
+                        Они обладают большим рвением к преподаванию, а также бережным отношением к вашим деньгам.</p>
+                </div>
+                <div class="pro-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Индивидуальные планы уроков, соответствующие стилю обучения вашего ребенка, его темпу и конкретным
+                        академическим потребностям.</p>
+                </div>
+                <div class="pro-card">
+                    <i class="fas fa-calendar-days"></i>
+                    <h3>Гибкое расписание</h3>
+                    <p>Ребенок обучается в удобное для него время. Гибкий график преподавателя подстроится под
+                         загруженный образ жизни школьника.</p>
+                </div>
+                <div class="pro-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Гарантированные результаты</h3>
+                    <p>Благодаря практикоориентированному обучению, реальным примерам, а также систематическому
+                         повторению пройденного материала, ваш ребенок достигнет наилучшего результата по окочании курса.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Carousel -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Популярные курсы</h2>
+                <p>Изучите самые востребованные направления в обучении</p>
+            </div>
+            <div class="carousel">
+                <div class="carousel-container" id="carousel">
+                    {% for card in popular_courses %}
+                        <div class="course-card">
+                            <div class="course-img" style="background: url('{{ card.image.url }}') center/cover;"></div>
+                            <div class="course-content">
+                                <span class="course-tag">{{ course.tag }}</span>
+                                <h3>{{ course.name }}</h3>
+                                <p>{{ course.short }}</p>
+                                <div class="course-meta">
+                                    <span><i class="fas fa-clock"></i> {{ course.lessons_count }} занятий</span>
+                                    <span><i class="fas fa-user"></i> {{ course.tutor }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="course-card">
+                        <div class="course-img"></div>
+                        <div class="course-content">
+                            <span class="course-tag">Разработка игр</span>
+                            <h3>Scratch</h3>
+                            <p>Идеальный старт для учащихся начальных классов – разработка 2D игр в интуитивно
+                                понтяной среде программирования.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 24 занятия</span>
+                                <span><i class="fas fa-user"></i> Милена Владимировна</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img"></div>
+                        <div class="course-content">
+                            <span class="course-tag">Разработка игр</span>
+                            <h3>PyGame</h3>
+                            <p>Продвинутый уровень для детей постарше: изучение востребованного языка
+                                Python на примере разработки 2D игр с частичной интеграцией в 3D.</p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 18 занятий</span>
+                                <span><i class="fas fa-user"></i> Милена Владимировна</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img"></div>
+                        <div class="course-content">
+                            <span class="course-tag">Веб-разработка</span>
+                            <h3>Django</h3>
+                            <p>Курс для усидчивых ребят, которые хотят изучить азы веб-разработки
+                                и сверстать первый сайт на HTML, CSS, JavaScript с использованием Django. 
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 32 Lessons</span>
+                                <span><i class="fas fa-user"></i> Alex Reynolds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-img"></div>
+                        <div class="course-content">
+                            <span class="course-tag">Информатика</span>
+                            <h3>Подготовка к ОГЭ</h3>
+                            <p>Получите качественную подготовку к основному государственному
+                                экзамену с психологической поддержкой и мотивацией вашего ребенка.
+                            </p>
+                            <div class="course-meta">
+                                <span><i class="fas fa-clock"></i> 20 Lessons</span>
+                                <span><i class="fas fa-user"></i> Dr. Emily Parker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <div class="carousel-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="carousel-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>illtutor</h3>
+                    <p>Предоставление образовательных услуг для детей школьного возраста.</p>
+                    <h4>Свяжитесь с нами</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/illmilo"><i class="fab fa-telegram"></i></a>
+                        <a href="mailto:illfqm@gmail"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="#start"><i class="fas fa-chevron-right"></i> О нас</a></li>
+                        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Курсы</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Документы</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Политика конфидециальности</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Условия сервиса</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Политика возврата</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Пользовательское соглашение</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <p>&copy; 2023 EduMentor Tutoring Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'home/js/carousel.js' %}"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
 
 This is a template repository that helps you to set up your Django+Vecel+Neon project.
 
-## Usage
+## Setup
 1. Use this repository as a template
 2. Create project in Vercel using your new repository
 3. [Integrate Neon into your new Vercel project]((https://vercel.com/illmilos-projects/~/integrations/neon))
