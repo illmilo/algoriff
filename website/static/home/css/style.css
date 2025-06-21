@@ -60,10 +60,6 @@ header {
     /* font-family: 'Montserrat', sans-serif; */
 }
 
-.logo i {
-    color: var(--accent);
-}
-
 nav ul {
     display: flex;
     list-style: none;
@@ -292,28 +288,15 @@ nav a:hover::after {
     overflow: hidden;
 }
 
-.course-img::before {
+/* .course-img::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../images/scratch-header.png') center/cover;
     opacity: 0.8;
-}
-
-.course-card:nth-child(2) .course-img::before {
-    background-image: url('../images/pygame-header.png');
-}
-
-.course-card:nth-child(3) .course-img::before {
-    background-image: url('../images/django-header.png');
-}
-
-.course-card:nth-child(4) .course-img::before {
-    background-image: url('../images/oge-header.png');
-}
+} */
 
 .course-content {
     padding: 25px;
@@ -525,4 +508,12 @@ footer {
     .course-card {
         min-width: 280px;
     }
+}
+
+.course-card {
+    max-width: 25vw;
+}
+
+.carousel-container {
+    justify-content: center;
 }

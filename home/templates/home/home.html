@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Компьтерные науки для детей | illtutor</title>
+    <title>Компьтерные науки для детей | algoriff</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="favicon" href="{% static 'logo/favicon.ico' %}">
@@ -19,8 +19,8 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <img src="{% static 'logo/favicon.ico' %}" alt="Logo" width="35px">
-                <span>illtutor</span>
+                <i class="fa-solid fa-gamepad fa-xl" style="color: #949494;"></i>
+                <span>algoriff</span>
             </div>
             <nav>
                 <ul>
@@ -28,7 +28,7 @@
                     <li><a href="#">Курсы</a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn btn-outline">Sign In</a>
+            <a href="#" class="fa-solid fa-right-to-bracket fa-xl" style="color:unset;text-decoration: none;"></a>
         </div>
     </header>
 
@@ -53,34 +53,17 @@
     <section class="pros" id="start">
         <div class="container">
             <div class="section-title">
-                <h2>Зачем выбирать illtutor?</h2>
+                <h2>Зачем выбирать algoriff?</h2>
                 <p>Почувствуйте разницу в подходе к обучению</p>
             </div>
             <div class="pros-container">
+                {% for pro in pros %}
                 <div class="pro-card">
-                    <i class="fas fa-user-graduate"></i>
-                    <h3>Молодые преподаватели</h3>
-                    <p>Наши преподаватели – невыгоревшие специалисты с опытом от 6 месяцев. 
-                        Они обладают большим рвением к преподаванию, а также бережным отношением к вашим деньгам.</p>
+                    <i class="{{ pro.style }}"></i>
+                    <h3>{{ pro.title }}</h3>
+                    <p>{{ pro.short }}</p>
                 </div>
-                <div class="pro-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Индивидуальный подход</h3>
-                    <p>Индивидуальные планы уроков, соответствующие стилю обучения вашего ребенка, его темпу и конкретным
-                        академическим потребностям.</p>
-                </div>
-                <div class="pro-card">
-                    <i class="fas fa-calendar-days"></i>
-                    <h3>Гибкое расписание</h3>
-                    <p>Ребенок обучается в удобное для него время. Гибкий график преподавателя подстроится под
-                         загруженный образ жизни школьника.</p>
-                </div>
-                <div class="pro-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Гарантированные результаты</h3>
-                    <p>Благодаря практикоориентированному обучению, реальным примерам, а также систематическому
-                         повторению пройденного материала, ваш ребенок достигнет наилучшего результата по окочании курса.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -94,83 +77,30 @@
             </div>
             <div class="carousel">
                 <div class="carousel-container" id="carousel">
-                    {% for card in popular_courses %}
-                        <div class="course-card">
-                            <div class="course-img" style="background: url('{{ card.image.url }}') center/cover;"></div>
+                    {% for course in popular_courses %}
+                        <a href="#" style="text-decoration: none;color:unset;" class="course-card">
+                            <div class="course-img" style="background: url('{{ course.image.url }}') center/cover;"></div>
                             <div class="course-content">
                                 <span class="course-tag">{{ course.tag }}</span>
-                                <h3>{{ course.name }}</h3>
+                                <span class="course-tag">{{ course.age }}</span>
+                                <h3>{{ course.title }}</h3>
                                 <p>{{ course.short }}</p>
                                 <div class="course-meta">
                                     <span><i class="fas fa-clock"></i> {{ course.lessons_count }} занятий</span>
                                     <span><i class="fas fa-user"></i> {{ course.tutor }}</span>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
-                    <div class="course-card">
-                        <div class="course-img"></div>
-                        <div class="course-content">
-                            <span class="course-tag">Разработка игр</span>
-                            <h3>Scratch</h3>
-                            <p>Идеальный старт для учащихся начальных классов – разработка 2D игр в интуитивно
-                                понтяной среде программирования.</p>
-                            <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 24 занятия</span>
-                                <span><i class="fas fa-user"></i> Милена Владимировна</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="course-card">
-                        <div class="course-img"></div>
-                        <div class="course-content">
-                            <span class="course-tag">Разработка игр</span>
-                            <h3>PyGame</h3>
-                            <p>Продвинутый уровень для детей постарше: изучение востребованного языка
-                                Python на примере разработки 2D игр с частичной интеграцией в 3D.</p>
-                            <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 18 занятий</span>
-                                <span><i class="fas fa-user"></i> Милена Владимировна</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="course-card">
-                        <div class="course-img"></div>
-                        <div class="course-content">
-                            <span class="course-tag">Веб-разработка</span>
-                            <h3>Django</h3>
-                            <p>Курс для усидчивых ребят, которые хотят изучить азы веб-разработки
-                                и сверстать первый сайт на HTML, CSS, JavaScript с использованием Django. 
-                            </p>
-                            <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 32 Lessons</span>
-                                <span><i class="fas fa-user"></i> Alex Reynolds</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="course-card">
-                        <div class="course-img"></div>
-                        <div class="course-content">
-                            <span class="course-tag">Информатика</span>
-                            <h3>Подготовка к ОГЭ</h3>
-                            <p>Получите качественную подготовку к основному государственному
-                                экзамену с психологической поддержкой и мотивацией вашего ребенка.
-                            </p>
-                            <div class="course-meta">
-                                <span><i class="fas fa-clock"></i> 20 Lessons</span>
-                                <span><i class="fas fa-user"></i> Dr. Emily Parker</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="carousel-nav">
+                <!-- <div class="carousel-nav">
                     <div class="carousel-btn" id="prevBtn">
                         <i class="fas fa-chevron-left"></i>
                     </div>
                     <div class="carousel-btn" id="nextBtn">
                         <i class="fas fa-chevron-right"></i>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -180,7 +110,7 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-col">
-                    <h3>illtutor</h3>
+                    <h3>algoriff</h3>
                     <p>Предоставление образовательных услуг для детей школьного возраста.</p>
                     <h4>Свяжитесь с нами</h4>
                     <div class="social-links">
@@ -213,7 +143,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="{% static 'home/js/carousel.js' %}"></script>
 </body>
 </html>
