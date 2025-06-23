@@ -28,7 +28,7 @@
                     <li><a href="#">Курсы</a></li>
                 </ul>
             </nav>
-            <a href="#" class="fa-solid fa-right-to-bracket fa-xl" style="color:unset;text-decoration: none;"></a>
+            <a href="#" class="fa-solid fa-right-to-bracket fa-xl" style="color:#aaaaaa;text-decoration: none;"></a>
         </div>
     </header>
 
@@ -139,9 +139,97 @@
         </div>
         <div class="copyright">
             <div class="container">
-                <p>&copy; 2023 EduMentor Tutoring Services. All rights reserved.</p>
+                <p>&copy; 2025 ООО НПП &laquo; Algoriff &raquo;. Все права защищены.</p>
             </div>
         </div>
     </footer>
+
+   <script>
+        const header = document.querySelector("header");
+        let lastScroll = 0;
+        const scrollThreshold = 10;
+        const animationDuration = 0.3;
+
+        // Initialize header with original styles
+        header.style.transition = `transform ${animationDuration}s ease-in-out`;
+        header.style.transform = "translateY(0)"; // Start visible
+
+        window.addEventListener("scroll", () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+                header.style.transform = "translateY(-100%)";
+            } 
+            else if (currentScroll < lastScroll) {
+                header.style.transform = "translateY(0)";
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.carousel-container');
+    
+    // const carousel = document.querySelector('.carousel-container');
+    
+    if (window.innerWidth <= 768) {
+        // Scroll to first card on load
+        setTimeout(() => {
+            carousel.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+            });
+        }, 100);
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Only apply on mobile
+    if (window.innerWidth <= 768) {
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // Adjust multiplier for sensitivity
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile
+        carousel.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('touchend', () => {
+            isDown = false;
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if(!isDown) return;
+            const x = e.touches[0].pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+    }}
+});
+</script>
 </body>
 </html>

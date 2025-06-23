@@ -34,14 +34,27 @@ body {
 
 /* Header */
 header {
+    /* Original styling */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: var(--dark);
-    padding: 15px 0;
+    background-color: var(--dark); /* Maintain background */
+    padding: 15px 0; /* Maintain padding */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    
+    /* Animation enhancements */
+    will-change: transform;
+    backface-visibility: hidden;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease; /* Add background-color to transition */
+}
+
+/* Ensure header content maintains layout during animation */
+.header-container {
+    height: 100%; /* Maintain container height */
+    display: flex;
+    align-items: center;
 }
 
 .header-container {
@@ -470,20 +483,50 @@ footer {
         font-size: 1rem;
     }
     
-    .hero-btns {
-        flex-direction: column;
-        gap: 15px;
-    }
     
     .section-title h2 {
         font-size: 2rem;
     }
+
+    .carousel-container {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        padding-bottom: 20px; /* Space for scrollbar */
+    }
+    
+    .course-card {
+        scroll-snap-align: start;
+        min-width: 85vw; /* Show most of the next card */
+        margin-right: 15px; /* Add gap between cards */
+    }
+    
+    /* Hide scrollbar visually but keep functionality */
+    .carousel-container::-webkit-scrollbar {
+        display: none;
+    }
+    .carousel-container {
+        padding-left: 20px; /* Add left padding */
+        scroll-padding-left: 20px; /* Ensure snapping aligns with padding */
+    }
+    
+    .course-card:first-child {
+        margin-left: 0; /* Remove any left margin on first card */
+    }
+    
+    /* Adjust card width for better visibility */
+    .course-card {
+        min-width: 80vw; /* Slightly wider than before */
+        max-width: 80vw; /* Add max-width to match */
+    }
+    a.course-card:nth-child(1) {
+        margin-left:300px;
+    }
 }
 
 @media (max-width: 576px) {
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
+    .logo span {
+        display: none;
     }
     
     nav ul {
@@ -499,6 +542,10 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .hero-content h1 {
+        font-size:2em;
     }
     
     .pros-container {
@@ -516,4 +563,9 @@ footer {
 
 .carousel-container {
     justify-content: center;
+}
+
+.header-container nav {
+    margin-left:auto;
+    margin-right:25px;
 }
