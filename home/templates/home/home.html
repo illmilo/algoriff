@@ -93,14 +93,6 @@
                         </a>
                     {% endfor %}
                 </div>
-                <!-- <div class="carousel-nav">
-                    <div class="carousel-btn" id="prevBtn">
-                        <i class="fas fa-chevron-left"></i>
-                    </div>
-                    <div class="carousel-btn" id="nextBtn">
-                        <i class="fas fa-chevron-right"></i>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -129,10 +121,10 @@
                 <div class="footer-col">
                     <h3>Документы</h3>
                     <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Пользовательское соглашение</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Политика конфидециальности</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Условия сервиса</a></li>
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Политика возврата</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Пользовательское соглашение</a></li>
                     </ul>
                 </div>
             </div>
@@ -144,92 +136,6 @@
         </div>
     </footer>
 
-   <script>
-        const header = document.querySelector("header");
-        let lastScroll = 0;
-        const scrollThreshold = 10;
-        const animationDuration = 0.3;
-
-        // Initialize header with original styles
-        header.style.transition = `transform ${animationDuration}s ease-in-out`;
-        header.style.transform = "translateY(0)"; // Start visible
-
-        window.addEventListener("scroll", () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
-                header.style.transform = "translateY(-100%)";
-            } 
-            else if (currentScroll < lastScroll) {
-                header.style.transform = "translateY(0)";
-            }
-            
-            lastScroll = currentScroll;
-        });
-    </script>
-
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.querySelector('.carousel-container');
-    
-    // const carousel = document.querySelector('.carousel-container');
-    
-    if (window.innerWidth <= 768) {
-        // Scroll to first card on load
-        setTimeout(() => {
-            carousel.scrollTo({
-                left: 0,
-                behavior: 'smooth'
-            });
-        }, 100);
-
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    // Only apply on mobile
-    if (window.innerWidth <= 768) {
-        carousel.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDown = false;
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2; // Adjust multiplier for sensitivity
-            carousel.scrollLeft = scrollLeft - walk;
-        });
-
-        // Touch events for mobile
-        carousel.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
-        });
-
-        carousel.addEventListener('touchend', () => {
-            isDown = false;
-        });
-
-        carousel.addEventListener('touchmove', (e) => {
-            if(!isDown) return;
-            const x = e.touches[0].pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2;
-            carousel.scrollLeft = scrollLeft - walk;
-        });
-    }}
-});
-</script>
+   <script src="{% static 'home/js/header.js' %}"></script>
 </body>
 </html>
