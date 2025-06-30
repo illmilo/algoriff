@@ -1,24 +1,13 @@
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile
 
-class StaticImageFieldFile(ImageFieldFile):
-    def save(self, name, content, save=True):
-        if name.startswith('static/'):
-            self.name = name
-            setattr(self.instance, self.field.name, self.name)
-            return name
-        return super().save(name, content, save)
-
-class StaticImageField(models.ImageField):
-    attr_class = StaticImageFieldFile
-
 # Create your models here.
 class Courses(models.Model):
     title = models.CharField(max_length=100)
     short = models.TextField()
     tag = models.CharField(max_length=100)
     age = models.CharField(max_length=100)
-    image = StaticImageField()
+    image = models.ImageField(upload_to='courses/headers/')
     lessons_count = models.CharField(max_length=20)
     tutor = models.CharField(max_length=100)
 
