@@ -5,9 +5,10 @@
 }
 
 :root {
-    --primary: #4361ee;
+    --primary: #657ce6;
+    --border-r: 50px;
     --secondary: #3f37c9;
-    --accent: #4cc9f0;
+    --accent: #65abf0;
     --darker: #000;
     --light: white;
     --gray: #8d99ae;
@@ -70,7 +71,12 @@ header {
     color: var(--light);
     font-size: 24px;
     font-weight: 700;
-    /* font-family: 'Montserrat', sans-serif; */
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color:var(--accent);
 }
 
 nav ul {
@@ -79,41 +85,12 @@ nav ul {
     gap: 30px;
 }
 
-nav a {
-    color: var(--light);
-    text-decoration: none;
-    font-weight: 700;
-    position: relative;
-    padding-bottom: 5px;
-    transition: var(--transition);
-    font-size:1.3em;
-}
-
-nav a:hover {
-    color: var(--accent);
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent);
-    transition: var(--transition);
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     padding: 12px 30px;
-    border-radius: 50px;
+    border-radius: var(--border-r);
     text-decoration: none;
     font-weight: 600;
     transition: var(--transition);
@@ -561,4 +538,25 @@ footer {
 .header-container nav {
     margin-left:auto;
     margin-right:25px;
+}
+
+.head-icon {
+    color:var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.head-icon:hover {
+    color:var(--accent);
+}
+
+.footer-container a {
+    text-decoration: none;
+    color: #b3b3b3;
+    transition: var(--transition);
+}
+
+.footer-container a:hover {
+    color: white;
+    transform:scale(1.1);
 }

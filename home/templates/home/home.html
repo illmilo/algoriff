@@ -18,21 +18,21 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">
-                <i class="fa-solid fa-gamepad fa-xl" style="color: #949494;"></i>
+            <a href="/" class="logo">
+                <i class="fa-solid fa-gamepad fa-xl head-icon" style="color: #949494;"></i>
                 <span>algoriff</span>
-            </div>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#">Курсы</a></li>
+                    <!-- <li><a href="/" class="fa-solid fa-house fa-xl head-icon"></a></li> -->
+                    <li><a href="courses/" class="fa-solid fa-list fa-xl head-icon"></a></li>
+                    <li><a href="account/login" class="fa-solid fa-right-to-bracket fa-xl head-icon"></a></li>
                 </ul>
             </nav>
-            <a href="#" class="fa-solid fa-right-to-bracket fa-xl" style="color:#aaaaaa;text-decoration: none;"></a>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    {% block content %}
     <section class="hero">
         <div class="hero-image"></div>
         <div class="container">
@@ -73,12 +73,12 @@
         <div class="container">
             <div class="section-title">
                 <h2>Популярные курсы</h2>
-                <p>Изучите самые востребованные направления в обучении</p>
+                <p>Самые востребованные направления нашей платформы</p>
             </div>
             <div class="carousel">
                 <div class="carousel-container" id="carousel">
                     {% for course in popular_courses %}
-                        <a href="#" style="text-decoration: none;color:unset;" class="course-card">
+                        <a href="courses/{{ course.title }}" style="text-decoration: none;color:unset;" class="course-card">
                             <div class="course-img" style="background: url('{{ course.image.url }}') center/cover;"></div>
                             <div class="course-content">
                                 <span class="course-tag">{{ course.tag }}</span>
@@ -86,7 +86,7 @@
                                 <h3>{{ course.title }}</h3>
                                 <p>{{ course.short }}</p>
                                 <div class="course-meta">
-                                    <span><i class="fas fa-clock"></i> {{ course.lessons_count }} занятий</span>
+                                    <span><i class="fas fa-clock"></i> {{ course.lessons_count }}</span>
                                     <span><i class="fas fa-user"></i> {{ course.tutor }}</span>
                                 </div>
                             </div>
@@ -96,6 +96,8 @@
             </div>
         </div>
     </section>
+
+    {% endblock %}
 
     <!-- Footer -->
     <footer>

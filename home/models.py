@@ -19,7 +19,7 @@ class Courses(models.Model):
     tag = models.CharField(max_length=100)
     age = models.CharField(max_length=100)
     image = StaticImageField()
-    lessons_count = models.IntegerField()
+    lessons_count = models.CharField(max_length=20)
     tutor = models.CharField(max_length=100)
 
     def __str__(self):
@@ -37,3 +37,7 @@ class PublicRelations(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = 'Public Relation'
+        verbose_name_plural = 'Public Relations'
