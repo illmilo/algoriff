@@ -1,5 +1,145 @@
 {% extends 'home/home.html' %}
 
-{% block content %}
+{% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="courses-catalog">
+    <div class="container">
+        <div class="section-title">
+            <h1>Наши Курсы</h1>
+            <p>Исследуйте все доступные программы обучения</p>
+        </div>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <label for="category-filter">Категория:</label>
+                <select id="category-filter">
+                    <option value="all">Все категории</option>
+                    <option value="programming">Программирование</option>
+                    <option value="gamedev">Разработка игр</option>
+                    <option value="math">Математика</option>
+                    <option value="robotics">Робототехника</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="age-filter">Возраст:</label>
+                <select id="age-filter">
+                    <option value="all">Все возрасты</option>
+                    <option value="7-11">7-11 лет</option>
+                    <option value="12-16">12-16 лет</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label for="difficulty-filter">Сложность:</label>
+                <select id="difficulty-filter">
+                    <option value="all">Любая сложность</option>
+                    <option value="beginner">Начальный</option>
+                    <option value="intermediate">Средний</option>
+                    <option value="advanced">Продвинутый</option>
+                </select>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" id="course-search" placeholder="Поиск курсов...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        
+        <div class="courses-grid">
+            {% for course in courses %}
+            <a href="courses/{{ course.title }}" class="course-card">
+                <div class="course-img" style="background: url('{{ course.image.url }}') center/cover;"></div>
+                <div class="course-content">
+                    <div class="course-tags">
+                        <span class="course-tag">{{ course.tag }}</span>
+                        <span class="course-tag">{{ course.age }}</span>
+                    </div>
+                    <h3>{{ course.title }}</h3>
+                    <p>{{ course.short }}</p>
+                    <div class="course-meta">
+                        <span><i class="fas fa-clock"></i> {{ course.lessons_count }} занятий</span>
+                        <span><i class="fas fa-user"></i> {{ course.tutor }}</span>
+                    </div>
+                    <div class="course-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.5 (32 отзыва)</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        
+        <div class="pagination">
+            <a href="#" class="page-btn"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filters = document.querySelectorAll('select');
+    const searchInput = document.getElementById('course-search');
+    const courseCards = document.querySelectorAll('.course-card');
+    
+    function filterCourses() {
+        const categoryValue = document.getElementById('category-filter').value;
+        const ageValue = document.getElementById('age-filter').value;
+        const difficultyValue = document.getElementById('difficulty-filter').value;
+        const searchValue = searchInput.value.toLowerCase();
+        
+        courseCards.forEach(card => {
+            const category = card.getAttribute('data-category') || 'programming';
+            const age = card.getAttribute('data-age') || '12-16';
+            const difficulty = card.getAttribute('data-difficulty') || 'beginner';
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const description = card.querySelector('p').textContent.toLowerCase();
+            
+            const categoryMatch = categoryValue === 'all' || category === categoryValue;
+            const ageMatch = ageValue === 'all' || age === ageValue;
+            const difficultyMatch = difficultyValue === 'all' || difficulty === difficultyValue;
+            const searchMatch = searchValue === '' || 
+                              title.includes(searchValue) || 
+                              description.includes(searchValue);
+            
+            if (categoryMatch && ageMatch && difficultyMatch && searchMatch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    // Add event listeners
+    filters.forEach(filter => {
+        filter.addEventListener('change', filterCourses);
+    });
+    
+    searchInput.addEventListener('input', filterCourses);
+    
+    // Add data attributes to course cards
+    courseCards.forEach((card, index) => {
+        card.setAttribute('data-category', 'programming');
+        card.setAttribute('data-age', index % 2 === 0 ? '7-11' : '12-16');
+        card.setAttribute('data-difficulty', index % 3 === 0 ? 'beginner' : 
+                                           index % 3 === 1 ? 'intermediate' : 'advanced');
+    });
+});
+</script>
 {% endblock %}

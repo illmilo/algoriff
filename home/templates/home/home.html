@@ -19,14 +19,13 @@
     <header>
         <div class="container header-container">
             <a href="/" class="logo">
-                <i class="fa-solid fa-gamepad fa-xl head-icon" style="color: #949494;"></i>
+                <i class="fa-solid fa-gamepad fa-xl head-icon"></i>
                 <span>algoriff</span>
             </a>
             <nav>
                 <ul>
-                    <!-- <li><a href="/" class="fa-solid fa-house fa-xl head-icon"></a></li> -->
-                    <li><a href="courses/" class="fa-solid fa-list fa-xl head-icon"></a></li>
-                    <li><a href="account/login" class="fa-solid fa-right-to-bracket fa-xl head-icon"></a></li>
+                    <a href="courses/" class="btn"><i class="fa-solid fa-list fa-xl head-icon"></i><span>Курсы</span></a>
+                    <a href="account/login" class="btn btn-outline"><i class="fa-solid fa-right-to-bracket fa-xl head-icon"></i><span>Войти</span></a>
                 </ul>
             </nav>
         </div>
@@ -138,6 +137,8 @@
         </div>
     </footer>
 
-   <script src="{% static 'home/js/header.js' %}"></script>
+    <script src="{% static 'home/js/header.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

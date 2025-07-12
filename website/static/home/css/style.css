@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.header-container i {
+    color: #949494 !important;
 }
 
 :root {
@@ -9,17 +15,18 @@
     --border-r: 50px;
     --secondary: #3f37c9;
     --accent: #65abf0;
-    --darker: #000;
+    --darker: #0c0c0c;
     --light: white;
     --gray: #8d99ae;
     --transition: all 0.3s ease;
-    --dark: #1c1c1cb3;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --dark: #141414d2;
+    --primary-font: "Tektur", sans-serif;
+    --secondary-font: "Ubuntu", sans-serif;
+    font-family: var(--primary-font);
     scroll-behavior: smooth;
 }
 
 body {
-    /* font-family: 'Poppins', sans-serif; */
     background-color: var(--darker);
     color: var(--light);
     line-height: 1.6;
@@ -28,7 +35,6 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -56,12 +62,18 @@ header {
     height: 100%; /* Maintain container height */
     display: flex;
     align-items: center;
+    display: flex;
+    align-items: center;
+    font-family: var(--secondary-font) !important;
+    justify-content: space-around !important;
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+footer {
+    font-family: var(--secondary-font) !important;
+}
+
+.header-container nav ul span {
+    font-size: 1.0rem !important;
 }
 
 .logo {
@@ -72,11 +84,6 @@ header {
     font-size: 24px;
     font-weight: 700;
     text-decoration: none;
-    transition: var(--transition);
-}
-
-.logo:hover {
-    color:var(--accent);
 }
 
 nav ul {
@@ -113,7 +120,7 @@ nav ul {
 
 .btn-outline:hover {
     background: white;
-    color: var(--primary);
+    color: var(--primary) !important;
 }
 
 /* Hero Section */
@@ -150,7 +157,6 @@ nav ul {
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 20px;
-    /* font-family: 'Montserrat', sans-serif; */
 }
 
 .hero p {
@@ -192,7 +198,6 @@ nav ul {
 .section-title h2 {
     font-size: 2.5rem;
     color: var(--light);
-    /* font-family: 'Montserrat', sans-serif; */
     margin-bottom: 15px;
 }
 
@@ -391,6 +396,17 @@ footer {
     margin-bottom: 12px;
 }
 
+nav ul a {
+    display:flex !important;
+    flex-direction: row-reverse !important;
+    gap:10px;
+    align-items: center;
+    text-decoration: none;
+    color: #b3b3b3;
+    transition: var(--transition);
+    font-weight: 800;
+}
+
 .footer-links a {
     color: #b3b3b3;
     text-decoration: none;
@@ -528,19 +544,12 @@ footer {
     justify-content: center;
 }
 
-.header-container nav {
-    margin-left:auto;
-}
-
 .head-icon {
-    color:var(--primary);
+    color:var(--light);
     text-decoration: none;
     transition: var(--transition);
 }
 
-.head-icon:hover {
-    color:var(--accent);
-}
 
 .footer-container a {
     text-decoration: none;
@@ -551,4 +560,28 @@ footer {
 .footer-container a:hover {
     color: white;
     transform:scale(1.1);
+}
+
+/* Add this to your existing CSS */
+.header-container nav ul {
+    display: flex;
+    align-items: center; /* Vertically center items */
+    gap: 20px; /* Adjust gap between items */
+}
+
+/* Optional: Adjust icon size */
+.header-container nav ul li a i {
+    font-size: 1.5rem;
+}
+
+/* For mobile: hide text and keep icons */
+@media (max-width: 678px) {
+    nav ul li a span {
+        display: none;
+    }
+    
+    nav ul li a i {
+        font-size: 1.8rem;
+        margin-right: 5px;
+    }
 }
